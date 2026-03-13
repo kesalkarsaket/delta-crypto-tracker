@@ -83,3 +83,15 @@ symbol	query	string	true	To get funding history pass symbol as FUNDING:${symbol}
 start	query	integer	true	Start time: unix timestamp in seconds
 end	query	integer	true	End time: unix timestamp in seconds
 Enumerated Values
+
+
+**perfomance improvements**
+Performance Optimizations
+
+-This application processes high-frequency real-time market data streams including ticker updates, trades, order book updates, and candlestick data via WebSockets. To ensure smooth UI rendering and efficient resource usage, several performance optimizations were implemented. 
+- A single shared WebSocket connection is used across the application to avoid multiple connections and reduce network overhead, while different components subscribe to the required streams through reusable hooks. 
+- To prevent excessive UI re-renders caused by rapid incoming updates, throttling and batching techniques are applied so that multiple incoming messages are processed together before updating the React state. Rendering updates are synchronized with the browser’s rendering cycle using requestAnimationFrame, which ensures smoother visual updates and avoids layout thrashing during high-frequency data streams. 
+- Additionally, memoization techniques such as React.memo, useMemo, and useCallback are used to prevent unnecessary component re-renders, particularly for frequently updating components like price tickers and tables. 
+- For efficient data handling, incremental updates are applied instead of replacing entire datasets—for example, updating only changed ticker prices or appending new trades rather than reloading the entire trade list. 
+- Historical candlestick data is preprocessed and sorted by timestamp before rendering to ensure correct chart behavior and avoid repeated sorting during re-renders. Heavy UI components such as charts, order books, and trade lists are loaded only when needed to improve initial page load performance. 
+- Finally, user preferences like favorite coins are stored in localStorage so that the UI can be restored instantly on refresh without additional processing. These optimizations collectively ensure the application can handle high-frequency financial data streams efficiently while maintaining smooth UI performance and minimal resource consumption.
