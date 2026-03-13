@@ -52,6 +52,43 @@ src/
 └── Utils/
     └── Utils.tsx
     
+**Brief Description of the Approach**
+
+The application is designed as a real-time cryptocurrency market dashboard that consumes high-frequency data streams from WebSocket APIs and historical REST endpoints. The architecture follows a modular and hook-based design to keep data logic separate from UI components.
+
+A single shared WebSocket connection is established and reused across the application to avoid multiple network connections. Custom React hooks such as useTicker, useOrderBook, useTrades, and useCandlestick manage the lifecycle of individual subscriptions. These hooks handle subscribing on component mount, unsubscribing on unmount, and reconnecting gracefully if the WebSocket connection drops.
+
+The UI is structured into reusable components such as the order book, recent trades list, and candlestick charts. The product list page subscribes only to ticker updates, while the product detail page dynamically subscribes to additional streams including order book data, trades, and candlestick updates.
+
+To efficiently handle high-frequency data updates, the application applies performance optimizations such as throttling, batching, memoization, and requestAnimationFrame-based rendering to minimize unnecessary React re-renders and ensure smooth UI updates.
+
+Historical candlestick data is fetched through the REST API and rendered using a lightweight charting library, while real-time data updates are layered on top through WebSocket streams. Favorites are persisted using localStorage so that user preferences remain available across page refreshes.
+
+Overall, the approach focuses on efficient real-time data handling, clean separation of concerns, and scalable UI architecture for streaming market data applications.
+
+**What I Would Improve If I Had More Time**
+
+If given more time, several improvements could further enhance the application:
+
+1. Virtualization for Large Data Lists
+Components such as recent trades and order book updates could benefit from list virtualization (e.g., using react-window) to improve performance when rendering large datasets.
+
+2. Advanced WebSocket Resilience
+The WebSocket layer could be enhanced with exponential backoff reconnection strategies, heartbeat/ping mechanisms, and automatic resubscription handling to make the data layer more robust.
+
+3. State Management Optimization
+For larger-scale applications, introducing a centralized state management solution such as Zustand or Redux Toolkit could simplify managing shared real-time data across multiple components.
+
+4. Improved Error Handling and Monitoring
+Adding proper error boundaries, WebSocket failure handling, and logging would improve reliability and debugging in production environments.
+
+5. Unit and Integration Testing
+Additional test coverage using Jest and React Testing Library would ensure critical components such as hooks, WebSocket handlers, and UI components behave correctly under real-time updates.
+
+6. Enhanced UI/UX Features
+Additional user-friendly features could be added, such as price alerts, customizable watchlists, advanced chart indicators, and improved mobile interactions.
+
+
 ## Features Added
 -1. **Product List View** — Displayed the predefined list of symbols available from the server. For each symbol, subscribe to the ticker channel and show live data: symbol, last price, and 24h change. Include a way to search or filter products by name/symbol.
 2. **Product Detail View** — When a user selects a product, showing a detailed view with:
@@ -72,25 +109,4 @@ Code samples
 curl -X GET https://api.india.delta.exchange/v2/history/candles?resolution=5m&symbol=BTCUSD&start=1685618835&end=1722511635 \
   -H 'Accept: application/json'
 
-GET /history/candles
-
-It returns historical Open-High-Low-Close(ohlc) candles data of the symbol as per input values for resolution, start time and end time. Also, it can return only upto 2000 candles maximum in a response.
-
-Parameters
-Parameter	In	Type	Required	Description
-resolution	query	string	true	ohlc candle time frames like 1m, 5m, 1h
-symbol	query	string	true	To get funding history pass symbol as FUNDING:${symbol}, mark price MARK:${symbol} and OI data OI:${symbol} for e.g. - FUNDING:BTCUSD, MARK:C-BTC-66400-010824, OI:ETHUSD
-start	query	integer	true	Start time: unix timestamp in seconds
-end	query	integer	true	End time: unix timestamp in seconds
-Enumerated Values
-
-
-**perfomance improvements**
-
--This application processes high-frequency real-time market data streams including ticker updates, trades, order book updates, and candlestick data via WebSockets. To ensure smooth UI rendering and efficient resource usage, several performance optimizations were implemented. 
-- A single shared WebSocket connection is used across the application to avoid multiple connections and reduce network overhead, while different components subscribe to the required streams through reusable hooks. 
-- To prevent excessive UI re-renders caused by rapid incoming updates, throttling and batching techniques are applied so that multiple incoming messages are processed together before updating the React state. Rendering updates are synchronized with the browser’s rendering cycle using requestAnimationFrame, which ensures smoother visual updates and avoids layout thrashing during high-frequency data streams. 
-- Additionally, memoization techniques such as React.memo, useMemo, and useCallback are used to prevent unnecessary component re-renders, particularly for frequently updating components like price tickers and tables. 
-- For efficient data handling, incremental updates are applied instead of replacing entire datasets—for example, updating only changed ticker prices or appending new trades rather than reloading the entire trade list. 
-- Historical candlestick data is preprocessed and sorted by timestamp before rendering to ensure correct chart behavior and avoid repeated sorting during re-renders. Heavy UI components such as charts, order books, and trade lists are loaded only when needed to improve initial page load performance. 
-- Finally, user preferences like favorite coins are stored in localStorage so that the UI can be restored instantly on refresh without additional processing. These optimizations collectively ensure the application can handle high-frequency financial data streams efficiently while maintaining smooth UI performance and minimal resource consumption.
+GET v2/history/candles
