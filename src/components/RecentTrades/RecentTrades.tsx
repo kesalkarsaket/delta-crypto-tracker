@@ -1,6 +1,5 @@
 import {
   Paper,
-  Typography,
   Box,
   Divider,
 } from "@mui/material";

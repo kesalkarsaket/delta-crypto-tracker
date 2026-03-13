@@ -37,8 +37,6 @@ export default function CandlestickChart({ data }: Props) {
     borderColor: "#2B2B43",
   },
     });
-
-    // ✅ v5 API
     const candleSeries = chart.addSeries(CandlestickSeries, {
       upColor: "#26a69a",
       downColor: "#ef5350",
@@ -48,7 +46,7 @@ export default function CandlestickChart({ data }: Props) {
     });
 
     seriesRef.current = candleSeries;
-      // ✅ keep chart focused on latest candle
+      //keep chart focused on latest candle
     chart.timeScale().scrollToRealTime();
 
     return () => chart.remove();

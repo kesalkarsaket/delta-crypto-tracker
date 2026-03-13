@@ -23,7 +23,7 @@ export function useOrderBook(symbol: string) {
       bidsRef.current = data.bids;
       asksRef.current = data.asks;
 
-      // ✅ THROTTLE (max ~20 renders/sec)
+      // THROTTLE (max ~20 renders/sec)
       if (Date.now() - lastUpdate.current < 200) return;
       lastUpdate.current = Date.now();
 

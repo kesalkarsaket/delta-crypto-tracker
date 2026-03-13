@@ -8,8 +8,8 @@ export default function ConnectionStatus({ status }: { status: string }) {
         status === "CONNECTED"
           ? "success"
           : status === "CONNECTING"
-          ? "warning"
-          : "error"
+            ? "warning"
+            : "error"
       }
     />
   );

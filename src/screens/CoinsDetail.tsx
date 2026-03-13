@@ -44,20 +44,20 @@ export default function CoinsDetail() {
   const { bids, asks } = useOrderBook(symbol);
 
   return (
-<Box
-  sx={{
-    display: "flex",
-    justifyContent: "center",
-    background: "#14161a",
-    minHeight: "100vh",
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        background: "#14161a",
+        minHeight: "100vh",
 
-    /* fix header overlap */
-    pt: { xs: 10, md: 12 },
+        /* fix header overlap */
+        pt: { xs: 10, md: 12 },
 
-    pb: { xs: 4, md: 8 },
-    px: 2
-  }}
->
+        pb: { xs: 4, md: 8 },
+        px: 2
+      }}
+    >
       <Box sx={{ width: "100%", maxWidth: 1500 }}>
         {/* HEADER */}
         <Paper
@@ -130,15 +130,15 @@ export default function CoinsDetail() {
                   Number(t?.ltp_change_24h) > 0
                     ? "success.main"
                     : Number(t?.ltp_change_24h) < 0
-                    ? "error.main"
-                    : "inherit",
+                      ? "error.main"
+                      : "inherit",
                 fontWeight: 600
               }}
             >
               {t?.ltp_change_24h
                 ? `${Number(t.ltp_change_24h) > 0 ? "+" : ""}${Number(
-                    t.ltp_change_24h
-                  ).toFixed(2)}%`
+                  t.ltp_change_24h
+                ).toFixed(2)}%`
                 : "0.00"}
             </Typography>
           </Box>
@@ -183,45 +183,45 @@ export default function CoinsDetail() {
         </Paper>
 
         {/* ORDERBOOK + TRADES */}
-<Grid container spacing={3} sx={{ mb: 3 }}>
+        <Grid container spacing={3} sx={{ mb: 3 }}>
 
-  <Grid size={{ xs: 12, md: 7 }}>
-    <Paper
-      sx={{
-        p: 2,
-        background: "#1e222d",
-        borderRadius: 2,
-        height: { xs: 400, md: 700 },
-        overflow: "hidden"
-      }}
-    >
-      <Typography variant="h6" mb={2} fontWeight={600}>
-        Order Book
-      </Typography>
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Paper
+              sx={{
+                p: 2,
+                background: "#1e222d",
+                borderRadius: 2,
+                height: { xs: 400, md: 700 },
+                overflow: "hidden"
+              }}
+            >
+              <Typography variant="h6" mb={2} fontWeight={600}>
+                Order Book
+              </Typography>
 
-      <OrderBook asks={asks} bids={bids} />
-    </Paper>
-  </Grid>
+              <OrderBook asks={asks} bids={bids} />
+            </Paper>
+          </Grid>
 
-  <Grid size={{ xs: 12, md: 5 }}>
-    <Paper
-      sx={{
-        p: 2,
-        background: "#1e222d",
-        borderRadius: 2,
-        height: { xs: 400, md: 700 },
-        overflow: "hidden"
-      }}
-    >
-      <Typography variant="h6" mb={2} fontWeight={600}>
-        Recent Trades
-      </Typography>
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Paper
+              sx={{
+                p: 2,
+                background: "#1e222d",
+                borderRadius: 2,
+                height: { xs: 400, md: 700 },
+                overflow: "hidden"
+              }}
+            >
+              <Typography variant="h6" mb={2} fontWeight={600}>
+                Recent Trades
+              </Typography>
 
-      <RecentTrades symbols={[symbol]} />
-    </Paper>
-  </Grid>
+              <RecentTrades symbols={[symbol]} />
+            </Paper>
+          </Grid>
 
-</Grid>
+        </Grid>
 
         {/* CHART */}
         <Paper

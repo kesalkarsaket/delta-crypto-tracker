@@ -37,16 +37,16 @@ export default function CoinsTable() {
   const [tab, setTab] = useState(0);
   const navigate = useNavigate();
 
-const [favorites, setFavorites] = useState<string[]>(() => getFavorites());
+  const [favorites, setFavorites] = useState<string[]>(() => getFavorites());
 
-const toggleFavorite = useCallback((symbol: string) => {
-  const updated = favorites.includes(symbol)
-    ? favorites.filter((f) => f !== symbol)
-    : [...favorites, symbol];
+  const toggleFavorite = useCallback((symbol: string) => {
+    const updated = favorites.includes(symbol)
+      ? favorites.filter((f) => f !== symbol)
+      : [...favorites, symbol];
 
-  setFavorites(updated);
-  saveFavorites(updated);
-}, [favorites]);
+    setFavorites(updated);
+    saveFavorites(updated);
+  }, [favorites]);
 
   const handleTabChange = (_: any, newValue: number) => {
     setTab(newValue);
@@ -58,7 +58,7 @@ const toggleFavorite = useCallback((symbol: string) => {
   const filtered = coins.filter((symbol) =>
     symbol.toLowerCase().includes(search.toLowerCase())
   );
-    const status = useWebSocket();
+  const status = useWebSocket();
 
 
   return (
@@ -80,7 +80,7 @@ const toggleFavorite = useCallback((symbol: string) => {
             px: { xs: 2, sm: 3 }
           }}
         >
-                    <br />
+          <br />
           <ConnectionStatus status={status} />
           <br />
 

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ color:"gold", position: "fixed", backgroundColor:"#222222", fontWeight:"bold", cursor:"pointer" }}>
+      <AppBar sx={{ color: "gold", position: "fixed", backgroundColor: "#222222", fontWeight: "bold", cursor: "pointer" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Crypto price Tracker

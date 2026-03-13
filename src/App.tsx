@@ -1,10 +1,7 @@
 import './App.css'
 import CoinsTable from "./screens/CoinsTable";
-import { useWebSocket } from "./hooks/useWebSocket";
-import ConnectionStatus from "./components/ConnectionStatus";
 import { useEffect } from 'react';
 import { wsService } from './api/websocket';
-import WebsocketCheck from './components/WebsocketCheck';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CoinsDetail from './screens/CoinsDetail';
 import { Box, createTheme, ThemeProvider } from '@mui/material';
@@ -16,7 +13,6 @@ function App() {
         primary: { main: "#fff" }
       }
     });
-  const status = useWebSocket();
   useEffect(() => {
     wsService.connect();
   }, []);
