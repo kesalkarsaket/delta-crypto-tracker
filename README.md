@@ -69,7 +69,6 @@ GET historical ohlc candles
 
 Code samples
 
-# You can also use wget
 curl -X GET https://api.india.delta.exchange/v2/history/candles?resolution=5m&symbol=BTCUSD&start=1685618835&end=1722511635 \
   -H 'Accept: application/json'
 
