@@ -2,8 +2,8 @@
 Crypto Price Tracker App for displaying all crypto currencies, orderbook, recent trades, mini hostorical charts
 
 ## Setup
-npm install
-npm start
+1. npm install
+2. npm start
 
 ## Project Structure
 
