@@ -1,4 +1,4 @@
-# Crypto Price Tracker App
+# Crypto Price Tracker App (React+Typescript+Material UI design system)
 Crypto Price Tracker App for displaying all crypto currencies, orderbook, recent trades, mini hostorical charts
 
 ## Setup
