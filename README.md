@@ -86,7 +86,6 @@ Enumerated Values
 
 
 **perfomance improvements**
-Performance Optimizations
 
 -This application processes high-frequency real-time market data streams including ticker updates, trades, order book updates, and candlestick data via WebSockets. To ensure smooth UI rendering and efficient resource usage, several performance optimizations were implemented. 
 - A single shared WebSocket connection is used across the application to avoid multiple connections and reduce network overhead, while different components subscribe to the required streams through reusable hooks. 
