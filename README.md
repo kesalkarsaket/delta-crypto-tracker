@@ -1,75 +1,53 @@
-# React + TypeScript + Vite
+# Crypto Price Tracker App
+Crypto Price Tracker App for displaying all crypto currencies, orderbook, recent trades, mini hostorical charts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup
+npm install
+npm start
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+src/
+├── App.css                     # App level CSS, Material UI config
+├── App.tsx                     # Routing defined here
+├── main.tsx                    # Entry point of the app
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+├── api/
+│   ├── candles.tsx             # Candle API + helpers
+│   ├── runtimeconfig.tsx       # Runtime config
+│   └── websocket.tsx           # WebSocket connection handler
 
-Note: This will impact Vite dev & build performances.
+├── components/
+│   ├── historicalCharts/
+│   │   ├── CandleStickChart.tsx            # CandleStick chart component
+│   │   └── MiniPriceChart.tsx     
+│   │
+│   ├── orderbook/
+│   │   ├── OrderBook.tsx            # Orderbook
+│   │   ├── OrderBookUtils.ts
+│   │   └── OrderRow.tsx
+│   │
+│   └── RecentTrades/
+│       ├── RecentTrades.js            # Recent trades component
+│       └── TradeRow.js
+    ── Connectionstatus.tsx
+    ── Header.tsx
+    
+├── hooks/
+│   ├── useCandleStick.tsx    #hooks where subscription/unsubscription are handled
+│   ├── useTrades.tsx
+│   ├── useTicker.tsx
+│   ├── useOrderBook.tsx
+│   └── useWebsocket.tsx
 
-## Expanding the ESLint configuration
+├── screens/
+│   ├── CoinRow.tsx       
+│   ├── CoinsDetails.tsx
+│   └── CoinsTable.tsx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+├── storage/
+│   └── favorites.tsx
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+└── Utils/
+    └── Utils.tsx
