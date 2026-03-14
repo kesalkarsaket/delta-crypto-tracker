@@ -71,22 +71,23 @@ Overall, the approach focuses on efficient real-time data handling, clean separa
 If given more time, several improvements could further enhance the application:
 
 1. Virtualization for Large Data Lists
-Components such as recent trades and order book updates could benefit from list virtualization (e.g., using react-window) to improve performance when rendering large datasets.
+Components such as recent trades and order book updates could benefit from list virtualization (e.g., using react-window) to improve performance when rendering large datasets. -
 
 2. Advanced WebSocket Resilience
-The WebSocket layer could be enhanced with exponential backoff reconnection strategies, heartbeat/ping mechanisms, and automatic resubscription handling to make the data layer more robust.
+The WebSocket layer could be enhanced with exponential backoff reconnection strategies, heartbeat/ping mechanisms, and automatic resubscription handling to make the data layer more robust. - (due to time constrainst)
 
 3. State Management Optimization
 For larger-scale applications, introducing a centralized state management solution such as Zustand or Redux Toolkit could simplify managing shared real-time data across multiple components.
 
-4. Improved Error Handling and Monitoring
-Adding proper error boundaries, WebSocket failure handling, and logging would improve reliability and debugging in production environments.
+4. Resolution and Syncing could be fixed between data from historical API and websocket stream (due to time constrainst)
+5.  Improved Ui when there is no data
+Adding proper UI Fallback when there is no data or show last traded value (close value in case of ltp) -  (due to time constrainst)
 
-5. Unit and Integration Testing
-Additional test coverage using Jest and React Testing Library would ensure critical components such as hooks, WebSocket handlers, and UI components behave correctly under real-time updates.
+6. Unit and Integration Testing
+Additional test coverage using Jest and React Testing Library would ensure critical components such as hooks, WebSocket handlers, and UI components behave correctly under real-time updates. - (due to time constrainst)
 
-6. Enhanced UI/UX Features
-Additional user-friendly features could be added, such as price alerts, customizable watchlists, advanced chart indicators, and improved mobile interactions.
+7. Enhanced UI/UX Features
+Additional user-friendly features could be added, such as price alerts, customizable watchlists, advanced chart indicators, and improved mobile interactions. - (due to time constrainst)
 
 
 ## Features Added
